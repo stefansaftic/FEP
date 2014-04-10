@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>ATOB</title>
+	<script src="js/radio.min.js"></script>
+	<script src="js/FEP.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script>
+	window.renderT= function(data){
+		s = '';
+		for(var x in data){
+			for(var y in data[x]){
+				s += '<div class="tile'+data[x][y]+'"></div>';
+			}
+			s += '<div style="clear:both"></div>';
+		}
+		$('#game').html(s);
+	}
+	window.renderPlayer= function(position){
+		$('#game').append('<div id="player" style="top:'+(position.y*25)+'px;left:'+(position.x*25)+'px"></div>');
+	}
+	window.renderMoveUp= function(valid){
+		if(valid){
+			$('#player').css('top',"-=" + 25 + 'px');
+		}
+	}
+	window.renderMoveDown= function(valid){
+		if(valid){
+			$('#player').css('top',"+=" + 25 + 'px');
+		}
+	}
+	window.renderMoveLeft= function(valid){
+		if(valid){
+			$('#player').css('left',"-=" + 25 + 'px');
+		}
+	}
+	window.renderMoveRight= function(valid){
+		if(valid){
+			$('#player').css('left',"+=" + 25 + 'px');
+		}
+	}
+	radio('render').subscribe(renderT);
+	radio('renderPlayer').subscribe(renderPlayer);
+	radio('renderMoveLeft').subscribe(renderMoveLeft);
+	radio('renderMoveRight').subscribe(renderMoveRight);
+	radio('renderMoveUp').subscribe(renderMoveUp);
+	radio('renderMoveDown').subscribe(renderMoveDown);
+	$(document).ready(function(){
+		igra = new FEP.ATOB(0);
+		igra.start();
+		kont = new FEP.FController('keyboard',1);
+		kont.mapKey(38,function(){radio('moveUp').broadcast();});
+		kont.mapKey(40,function(){radio('moveDown').broadcast();});
+		kont.mapKey(39,function(){radio('moveRight').broadcast();});
+		kont.mapKey(37,function(){radio('moveLeft').broadcast();});
+	});
+	
+	</script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div id="game"></div>
+</body>
+</html>

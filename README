@@ -1,0 +1,16 @@
+Run
+InstallGlobal.bat
+Install.bat
+
+Then Build.bat to build your project
+or Watch.bat to build your project on any change
+
+Change name in package.json to change name of builded js library
+
+test folder contains tests
+siteTest contains test for real site (jQuery compatible)
+less contains style.less file
+doc contais documentation that is builded from your coffee files
+src_cof and src_js are temp dirs for building purpouse
+build/js will contain minified version of your lib
+build/css will contain compiled version of your less

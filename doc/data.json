@@ -1,0 +1,390 @@
+{
+    "project": {
+        "name": "FEP",
+        "version": "",
+        "description": "Fora Extend Patform",
+        "url": "http://FEP/",
+        "logo": "assets/docs-icon-FEP.png"
+    },
+    "files": {
+        "src\\ATOB.coffee": {
+            "name": "src\\ATOB.coffee",
+            "modules": {
+                "FEP": 1
+            },
+            "classes": {
+                "ATOB": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\FController.coffee": {
+            "name": "src\\FController.coffee",
+            "modules": {},
+            "classes": {
+                "FController": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\FGame.coffee": {
+            "name": "src\\FGame.coffee",
+            "modules": {},
+            "classes": {
+                "FGame": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\FLog.coffee": {
+            "name": "src\\FLog.coffee",
+            "modules": {},
+            "classes": {
+                "FLog": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "FEP": {
+            "name": "FEP",
+            "submodules": {},
+            "classes": {
+                "ATOB": 1,
+                "FController": 1,
+                "FGame": 1,
+                "FLog": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src\\FLog.coffee",
+            "line": 2,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Name of the game",
+                    "type": "String"
+                },
+                {
+                    "name": "version",
+                    "description": "Version of the game (0.0.x)",
+                    "type": "String"
+                },
+                {
+                    "name": "debug",
+                    "description": "Is game in debugging mode",
+                    "type": "Number"
+                }
+            ]
+        }
+    },
+    "classes": {
+        "ATOB": {
+            "name": "ATOB",
+            "shortname": "ATOB",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "namespace": "",
+            "file": "src\\ATOB.coffee",
+            "line": 2
+        },
+        "FController": {
+            "name": "FController",
+            "shortname": "FController",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "namespace": "",
+            "file": "src\\FController.coffee",
+            "line": 2
+        },
+        "FGame": {
+            "name": "FGame",
+            "shortname": "FGame",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "namespace": "",
+            "file": "src\\FGame.coffee",
+            "line": 2
+        },
+        "FLog": {
+            "name": "FLog",
+            "shortname": "FLog",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "namespace": "",
+            "file": "src\\FLog.coffee",
+            "line": 2
+        }
+    },
+    "classitems": [
+        {
+            "file": "src\\ATOB.coffee",
+            "line": 7,
+            "itemtype": "method",
+            "name": "constructor",
+            "params": [
+                {
+                    "name": "Number",
+                    "description": "debug Is game in debugging mode",
+                    "optional": true
+                }
+            ],
+            "class": "ATOB",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\ATOB.coffee",
+            "line": 13,
+            "itemtype": "method",
+            "name": "initData",
+            "class": "ATOB",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\ATOB.coffee",
+            "line": 27,
+            "itemtype": "method",
+            "name": "start",
+            "class": "ATOB",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\ATOB.coffee",
+            "line": 39,
+            "itemtype": "method",
+            "name": "validateMove",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "Is position where we try to move player",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Is it posible to move",
+                "type": "Boolean"
+            },
+            "class": "ATOB",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\ATOB.coffee",
+            "line": 48,
+            "itemtype": "method",
+            "name": "checkFinish",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "ATOB",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\ATOB.coffee",
+            "line": 55,
+            "description": "Moves player down",
+            "itemtype": "method",
+            "name": "moveDown",
+            "class": "ATOB",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\ATOB.coffee",
+            "line": 71,
+            "description": "Moves player up",
+            "itemtype": "method",
+            "name": "moveUp",
+            "class": "ATOB",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\ATOB.coffee",
+            "line": 87,
+            "description": "Moves player Left",
+            "itemtype": "method",
+            "name": "moveLeft",
+            "class": "ATOB",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\ATOB.coffee",
+            "line": 103,
+            "description": "Moves player right",
+            "itemtype": "method",
+            "name": "moveRight",
+            "class": "ATOB",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FController.coffee",
+            "line": 7,
+            "itemtype": "method",
+            "name": "constructor",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "Type of controller",
+                    "type": "String"
+                },
+                {
+                    "name": "debug",
+                    "description": "Is game in debugging mode",
+                    "type": "Number"
+                }
+            ],
+            "class": "FController",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FController.coffee",
+            "line": 22,
+            "itemtype": "method",
+            "name": "mapKey",
+            "params": [
+                {
+                    "name": "code",
+                    "description": "keyCode that will be maped",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "function that will be triggered",
+                    "type": "Function"
+                }
+            ],
+            "class": "FController",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FController.coffee",
+            "line": 29,
+            "itemtype": "method",
+            "name": "unmapkey",
+            "params": [
+                {
+                    "name": "code",
+                    "description": "keyCode that will be unmaped",
+                    "type": "String"
+                }
+            ],
+            "class": "FController",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FController.coffee",
+            "line": 36,
+            "itemtype": "method",
+            "name": "trigger",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                " \ncontroller.event({ keyCode: '32' })"
+            ],
+            "class": "FController",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FGame.coffee",
+            "line": 12,
+            "itemtype": "property",
+            "name": "status",
+            "type": "String",
+            "class": "FGame",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FGame.coffee",
+            "line": 18,
+            "itemtype": "property",
+            "name": "logger",
+            "type": "FLog",
+            "class": "FGame",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FGame.coffee",
+            "line": 23,
+            "description": "Start the game",
+            "itemtype": "method",
+            "name": "start",
+            "example": [
+                " \n  set status to 'started'"
+            ],
+            "class": "FGame",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FGame.coffee",
+            "line": 31,
+            "description": "Ends the game",
+            "itemtype": "method",
+            "name": "end",
+            "example": [
+                " \n  set status to 'ended'"
+            ],
+            "class": "FGame",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FGame.coffee",
+            "line": 39,
+            "description": "Pause the game",
+            "itemtype": "method",
+            "name": "pause",
+            "class": "FGame",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FGame.coffee",
+            "line": 51,
+            "description": "Init all data for game, override this method when you extend this class",
+            "itemtype": "method",
+            "name": "initData",
+            "class": "FGame",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FLog.coffee",
+            "line": 8,
+            "itemtype": "method",
+            "name": "log",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Object | Integer | String | Array"
+                }
+            ],
+            "class": "FLog",
+            "module": "FEP"
+        }
+    ],
+    "warnings": []
+}

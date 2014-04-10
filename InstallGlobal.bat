@@ -1,0 +1,1 @@
+npm install -g coffeelint grunt coffee-script coffeescript-concat
