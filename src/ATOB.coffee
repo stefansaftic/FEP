@@ -110,6 +110,7 @@ class ATOB extends FGame
       position = {x:@data.player.x,y:@data.player.y}
       position.y++
       if @validateMove(position)
+        @logger.log("Moved right")
         @checkFinish(position)
         @data.player = position
         radio('renderMoveRight').broadcast(true)
