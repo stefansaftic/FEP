@@ -1,23 +1,6 @@
 root = exports ? window
 ###*
 # @module FEP
-# @class FLog
-### 
-class FLog
-  constructor: (@debug)->
-  ###*
-  # @method log
-  # @param data {Object | Integer | String | Array}
-  ###
-  log: (data)->
-    if @debug isnt 0
-      if console? then console.log data
-      else if alert? then alert data
-root.FEP ?= {}
-root.FEP.FLog = FLog
-root = exports ? window
-###*
-# @module FEP
 # @class FGame
 # @constructor
 # @param {String} name Name of the game
@@ -73,63 +56,6 @@ class FGame
     @data = {}
 root.FEP ?= {}
 root.FEP.FGame = FGame
-root = exports ? window
-###*
-# @module FEP
-# @class FController
-### 
-class FController
-  ###*
-  # @method constructor
-  # @param {String} type Type of controller
-  # @param {Number} debug Is game in debugging mode
-  ###
-  constructor: (@type, @debug)->
-    @logger = new FLog(@debug)
-    @mapKeys = {}
-    switch @type
-      when 'keyboard'
-        document.addEventListener("keydown",@trigger.bind(@))
-      when 'custom'
-        @logger.log('Custom controller')
-      else
-        @logger.log('Controller type:'+@type+' not implemented')
-  ###*
-  # @method mapKey
-  # @param {String} code keyCode that will be maped
-  # @param {Function} callback function that will be triggered
-  ###
-  mapKey: (code,callback)->
-    @mapKeys[code] = callback
-  ###*
-  # @method unmapkey
-  # @param {String} code keyCode that will be unmaped
-  ###
-  unmapKey: (code)->
-    if @mapKeys[code]?
-      delete @mapKeys[code]
-  ###*
-  # @method trigger
-  # @param {Object} event
-  # @example 
-  # controller.event({ keyCode: '32' })
-  ###
-  trigger: (event)->
-    switch @type
-      when 'keyboard'
-        if @mapKeys[event.keyCode]?
-          @mapKeys[event.keyCode]()
-        else
-          @logger.log(event.keyCode)
-      when 'custom'
-        if @mapKeys[event.keyCode]?
-          @mapKeys[event.keyCode]()
-        else
-          @logger.log(event.keyCode)
-      else
-        @logger.log('Controller type:'+@type+' not implemented')
-root.FEP ?= {}
-root.FEP.FController = FController
 root = exports ? window
 ###*
 # @module FEP
@@ -242,6 +168,7 @@ class ATOB extends FGame
       position = {x:@data.player.x,y:@data.player.y}
       position.y++
       if @validateMove(position)
+        @logger.log("Moved right")
         @checkFinish(position)
         @data.player = position
         radio('renderMoveRight').broadcast(true)
@@ -250,3 +177,177 @@ class ATOB extends FGame
       @data.lock = false
 root.FEP ?= {}
 root.FEP.ATOB = ATOB
+root = exports ? window
+###*
+# @module FEP
+# @class SNAKE
+### 
+class SNAKE extends ATOB
+  ###*
+  # @method constructor
+  # @param [Number] debug Is game in debugging mode
+  ###
+  constructor: (@debug=0) ->
+    super(@debug)
+    @logger.log('But it is a snake game')
+  validP: (t)->
+    return t>=0 && t<@data.n
+  ###*
+  # @method validateMove
+  # @param {Object} position Is position where we try to move player
+  # @return {Boolean} Is it posible to move
+  ###
+  validateMove: (position)->
+    if @data.ground[position.x][position.y] >= 0
+      return true
+    return false
+  loop: ()->
+    position = {x:@data.player.x+@data.direction.x,y:@data.player.y+@data.direction.y}
+    if @validP(position.x) && @validP(position.y) && @validateMove(position)
+      @move(position)
+    else
+      @data.direction = {x:0,y:0}
+      @end()
+  move: (position)->
+    @data.tmpdir = @data.direction
+    @logger.log(position)
+    if @data.ground[position.x][position.y] > 0
+      @data.tailAdd += @data.ground[position.x][position.y] * 2
+    @data.ground[@data.player.x][@data.player.y] = -2
+    @data.ground[position.x][position.y] = -1
+    @data.tail.push position
+    @data.player = position
+    if @data.tailAdd is 0
+      @data.ground[@data.tail[0].x][@data.tail[0].y] = 0
+      @data.tail.shift()
+    else
+      @data.tailAdd--
+    radio('renderAll').broadcast(@data.ground)
+  ###*
+  # Moves player down
+  # @method moveDown
+  ###
+  moveDown: () ->
+    if @data.tmpdir.y isnt -1
+      @data.direction = {x:0,y:1}
+  ###*
+  # Moves player up
+  # @method moveUp
+  ###
+  moveUp: () ->
+    if @data.tmpdir.y isnt 1
+      @data.direction = {x:0,y:-1}
+  ###*
+  # Moves player Left
+  # @method moveLeft
+  ###
+  moveLeft: () ->
+    if @data.tmpdir.x isnt 1
+      @data.direction = {x:-1,y:0}
+  ###*
+  # Moves player right
+  # @method moveRight
+  ###
+  moveRight: () ->
+    if @data.tmpdir.x isnt -1
+      @data.direction = {x:1,y:0}
+  ###*
+  # @method initData
+  ###
+  initData: () ->
+    @data = {
+      score: 0,
+      ground: [
+        [-2,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,1,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0]],
+      player: {x:0,y:0},
+      tail: [{x:0,y:0}]
+      direction: {x:1,y:0},
+      tmpdir: {x:1,y:0}
+      tailAdd: 2
+      n: 10
+    }
+root.FEP ?= {}
+root.FEP.SNAKE = SNAKE
+root = exports ? window
+###*
+# @module FEP
+# @class FLog
+### 
+class FLog
+  constructor: (@debug)->
+  ###*
+  # @method log
+  # @param data {Object | Integer | String | Array}
+  ###
+  log: (data)->
+    if @debug isnt 0
+      if console? then console.log data
+      else if alert? then alert data
+root.FEP ?= {}
+root.FEP.FLog = FLog
+root = exports ? window
+###*
+# @module FEP
+# @class FController
+### 
+class FController
+  ###*
+  # @method constructor
+  # @param {String} type Type of controller
+  # @param {Number} debug Is game in debugging mode
+  ###
+  constructor: (@type, @debug)->
+    @logger = new FLog(@debug)
+    @mapKeys = {}
+    switch @type
+      when 'keyboard'
+        document.addEventListener("keydown",@trigger.bind(@))
+      when 'custom'
+        @logger.log('Custom controller')
+      else
+        @logger.log('Controller type:'+@type+' not implemented')
+  ###*
+  # @method mapKey
+  # @param {String} code keyCode that will be maped
+  # @param {Function} callback function that will be triggered
+  ###
+  mapKey: (code,callback)->
+    @mapKeys[code] = callback
+  ###*
+  # @method unmapkey
+  # @param {String} code keyCode that will be unmaped
+  ###
+  unmapKey: (code)->
+    if @mapKeys[code]?
+      delete @mapKeys[code]
+  ###*
+  # @method trigger
+  # @param {Object} event
+  # @example 
+  # controller.event({ keyCode: '32' })
+  ###
+  trigger: (event)->
+    switch @type
+      when 'keyboard'
+        if @mapKeys[event.keyCode]?
+          @mapKeys[event.keyCode]()
+        else
+          @logger.log(event.keyCode)
+      when 'custom'
+        if @mapKeys[event.keyCode]?
+          @mapKeys[event.keyCode]()
+        else
+          @logger.log(event.keyCode)
+      else
+        @logger.log('Controller type:'+@type+' not implemented')
+root.FEP ?= {}
+root.FEP.FController = FController

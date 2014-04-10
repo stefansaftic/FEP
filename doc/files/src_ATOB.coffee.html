@@ -48,6 +48,8 @@
             
                 <li><a href="../classes/FLog.html">FLog</a></li>
             
+                <li><a href="../classes/SNAKE.html">SNAKE</a></li>
+            
             </ul>
 
             <ul id="api-modules" class="apis modules">
@@ -206,6 +208,7 @@ class ATOB extends FGame
       position = {x:@data.player.x,y:@data.player.y}
       position.y++
       if @validateMove(position)
+        @logger.log(&quot;Moved right&quot;)
         @checkFinish(position)
         @data.player = position
         radio(&#x27;renderMoveRight&#x27;).broadcast(true)

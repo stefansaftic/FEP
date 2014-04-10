@@ -4,7 +4,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "ATOB",
         "FController",
         "FGame",
-        "FLog"
+        "FLog",
+        "SNAKE"
     ],
     "modules": [
         "FEP"

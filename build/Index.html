@@ -14,9 +14,24 @@
 			s += '<div style="clear:both"></div>';
 		}
 		$('#game').html(s);
+		renderAll(data);
+	}
+	window.renderAll= function(data){
+		var tiles = $('#game div');
+		for(var x in data){
+			for(var y in data[x]){
+				var index = parseInt(y)*11+parseInt(x);
+				if(typeof tiles[index] != 'undefined'){
+					$(tiles[index]).attr('data-class','tile'+data[x][y]);
+					$(tiles[index]).attr('class','tile'+data[x][y]);
+				}else{
+					console.log([index]);
+				}
+			}
+		}
 	}
 	window.renderPlayer= function(position){
-		$('#game').append('<div id="player" style="top:'+(position.y*25)+'px;left:'+(position.x*25)+'px"></div>');
+		//$('#game').append('<div id="player" style="top:'+(position.y*25)+'px;left:'+(position.x*25)+'px"></div>');
 	}
 	window.renderMoveUp= function(valid){
 		if(valid){
@@ -44,9 +59,11 @@
 	radio('renderMoveRight').subscribe(renderMoveRight);
 	radio('renderMoveUp').subscribe(renderMoveUp);
 	radio('renderMoveDown').subscribe(renderMoveDown);
+	radio('renderAll').subscribe(renderAll);
 	$(document).ready(function(){
-		igra = new FEP.ATOB(0);
+		igra = new FEP.SNAKE(1);
 		igra.start();
+		setInterval(igra.loop.bind(igra),500);
 		kont = new FEP.FController('keyboard',1);
 		kont.mapKey(38,function(){radio('moveUp').broadcast();});
 		kont.mapKey(40,function(){radio('moveDown').broadcast();});

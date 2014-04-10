@@ -44,6 +44,15 @@
             },
             "fors": {},
             "namespaces": {}
+        },
+        "src\\SNAKE.coffee": {
+            "name": "src\\SNAKE.coffee",
+            "modules": {},
+            "classes": {
+                "SNAKE": 1
+            },
+            "fors": {},
+            "namespaces": {}
         }
     },
     "modules": {
@@ -54,12 +63,13 @@
                 "ATOB": 1,
                 "FController": 1,
                 "FGame": 1,
-                "FLog": 1
+                "FLog": 1,
+                "SNAKE": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src\\FLog.coffee",
+            "file": "src\\SNAKE.coffee",
             "line": 2,
             "is_constructor": 1,
             "params": [
@@ -132,6 +142,19 @@
             "module": "FEP",
             "namespace": "",
             "file": "src\\FLog.coffee",
+            "line": 2
+        },
+        "SNAKE": {
+            "name": "SNAKE",
+            "shortname": "SNAKE",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "namespace": "",
+            "file": "src\\SNAKE.coffee",
             "line": 2
         }
     },
@@ -383,6 +406,84 @@
                 }
             ],
             "class": "FLog",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\SNAKE.coffee",
+            "line": 7,
+            "itemtype": "method",
+            "name": "constructor",
+            "params": [
+                {
+                    "name": "Number",
+                    "description": "debug Is game in debugging mode",
+                    "optional": true
+                }
+            ],
+            "class": "SNAKE",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\SNAKE.coffee",
+            "line": 16,
+            "itemtype": "method",
+            "name": "validateMove",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "Is position where we try to move player",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Is it posible to move",
+                "type": "Boolean"
+            },
+            "class": "SNAKE",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\SNAKE.coffee",
+            "line": 47,
+            "description": "Moves player down",
+            "itemtype": "method",
+            "name": "moveDown",
+            "class": "SNAKE",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\SNAKE.coffee",
+            "line": 54,
+            "description": "Moves player up",
+            "itemtype": "method",
+            "name": "moveUp",
+            "class": "SNAKE",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\SNAKE.coffee",
+            "line": 61,
+            "description": "Moves player Left",
+            "itemtype": "method",
+            "name": "moveLeft",
+            "class": "SNAKE",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\SNAKE.coffee",
+            "line": 68,
+            "description": "Moves player right",
+            "itemtype": "method",
+            "name": "moveRight",
+            "class": "SNAKE",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\SNAKE.coffee",
+            "line": 75,
+            "itemtype": "method",
+            "name": "initData",
+            "class": "SNAKE",
             "module": "FEP"
         }
     ],
