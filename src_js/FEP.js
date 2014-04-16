@@ -518,13 +518,16 @@
   /**
    * @module FEP
    * @class FInit
-   * @constructor
-   * @param {String} name Name of the game
-   * @param {String} version Version of the game (0.0.x)
-   * @param {Number} debug Is game in debugging mode
    */
 
   FInit = (function() {
+
+    /**
+     * @method constructor
+     * @param {FGame} game Game that needs to be initialized
+     * @param {FController} controller Controller or game
+     * @param {Object} data Data for init
+     */
     function FInit(game, controller, data) {
       this.game = game;
       this.controller = controller;
@@ -532,10 +535,22 @@
       this.frame = 0;
     }
 
+
+    /**
+     * Should be triggered on document ready
+     * @method onReady
+     */
+
     FInit.prototype.onReady = function() {
       this.game.start();
       return this.loop();
     };
+
+
+    /**
+     * Loops game on each requestAnimationFrame
+     * @method loop
+     */
 
     FInit.prototype.loop = function() {
       requestAnimationFrame(this.loop.bind(this));

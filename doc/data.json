@@ -417,6 +417,49 @@
             "module": "FEP"
         },
         {
+            "file": "src\\FInit.coffee",
+            "line": 7,
+            "itemtype": "method",
+            "name": "constructor",
+            "params": [
+                {
+                    "name": "game",
+                    "description": "Game that needs to be initialized",
+                    "type": "FGame"
+                },
+                {
+                    "name": "controller",
+                    "description": "Controller or game",
+                    "type": "FController"
+                },
+                {
+                    "name": "data",
+                    "description": "Data for init",
+                    "type": "Object"
+                }
+            ],
+            "class": "FInit",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FInit.coffee",
+            "line": 15,
+            "description": "Should be triggered on document ready",
+            "itemtype": "method",
+            "name": "onReady",
+            "class": "FInit",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FInit.coffee",
+            "line": 22,
+            "description": "Loops game on each requestAnimationFrame",
+            "itemtype": "method",
+            "name": "loop",
+            "class": "FInit",
+            "module": "FEP"
+        },
+        {
             "file": "src\\FLog.coffee",
             "line": 8,
             "itemtype": "method",
