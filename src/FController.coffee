@@ -22,7 +22,7 @@ class FController
   ###*
   # @method mapKey
   # @param {String} code keyCode that will be maped
-  # @param {Function} callback function that will be triggered
+  # @param {Function|String} callback function or string that will be executed on trigger
   ###
   mapKey: (code,callback)->
     @mapKeys[code] = callback
@@ -43,12 +43,18 @@ class FController
     switch @type
       when 'keyboard'
         if @mapKeys[event.keyCode]?
-          @mapKeys[event.keyCode]()
+          if typeof @mapKeys[event.keyCode] == 'function'
+            @mapKeys[event.keyCode]()
+          else
+            eval(@mapKeys[event.keyCode])
         else
           @logger.log(event.keyCode)
       when 'custom'
         if @mapKeys[event.keyCode]?
-          @mapKeys[event.keyCode]()
+          if typeof @mapKeys[event.keyCode] == 'function'
+            @mapKeys[event.keyCode]()
+          else
+            eval(@mapKeys[event.keyCode])
         else
           @logger.log(event.keyCode)
       else

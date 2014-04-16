@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>ATOB</title>
+	<script src="js/radio.min.js"></script>
+	<script src="js/easeljs.min.js"></script>
+	<script src="js/FEP.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script>
+	window.renderT= function(data){
+		s = '';
+		for(var x in data){
+			for(var y in data[x]){
+				s += '<div class="tile'+data[x][y]+'"></div>';
+			}
+			s += '<div style="clear:both"></div>';
+		}
+		$('#game').html(s);
+		renderAll(data);
+	}
+	window.renderAll= function(data){
+		var tiles = $('#game div');
+		for(var x in data){
+			for(var y in data[x]){
+				var index = parseInt(y)*11+parseInt(x);
+				if(typeof tiles[index] != 'undefined'){
+					$(tiles[index]).attr('data-class','tile'+data[x][y]);
+					$(tiles[index]).attr('class','tile'+data[x][y]);
+				}else{
+					console.log([index]);
+				}
+			}
+		}
+	}
+	radio('render').subscribe(renderT);
+	radio('renderAll').subscribe(renderAll);
+	window.engine = new FEP.FInit(new FEP.SNAKE(1),new FEP.FController('keyboard',1),{skip:30});
+	engine.controller.mapKey(38,'radio(\'moveUp\').broadcast()');
+	engine.controller.mapKey(40,'radio(\'moveDown\').broadcast()');
+	engine.controller.mapKey(39,'radio(\'moveRight\').broadcast()');
+	engine.controller.mapKey(37,'radio(\'moveLeft\').broadcast()');
+	
+	</script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body onload="engine.onReady();">
+<div id="game"></div>
+</body>
+</html>

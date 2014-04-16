@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico">
     <script src="../assets/js/yui-source.js"></script>
-	<title>FEP v API Documentation : src\FController.coffee</title>
+	<title>FEP v API Documentation : FInit</title>
 </head>
 <body class="yui3-skin-sam">
 
@@ -91,77 +91,66 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <script>
-	var name = src\FController.coffee      
-</script>
-<h1 class="file-heading">File:src\FController.coffee</h1>
+                        <h1>FInit Class</h1>
+<div class="box meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-root = exports ? window
-###*
-# @module FEP
-# @class FController
-### 
-class FController
-  ###*
-  # @method constructor
-  # @param {String} type Type of controller
-  # @param {Number} debug Is game in debugging mode
-  ###
-  constructor: (@type, @debug)-&gt;
-    @logger = new FLog(@debug)
-    @mapKeys = {}
-    switch @type
-      when &#x27;keyboard&#x27;
-        document.addEventListener(&quot;keydown&quot;,@trigger.bind(@))
-      when &#x27;custom&#x27;
-        @logger.log(&#x27;Custom controller&#x27;)
-      else
-        @logger.log(&#x27;Controller type:&#x27;+@type+&#x27; not implemented&#x27;)
-  ###*
-  # @method mapKey
-  # @param {String} code keyCode that will be maped
-  # @param {Function|String} callback function or string that will be executed on trigger
-  ###
-  mapKey: (code,callback)-&gt;
-    @mapKeys[code] = callback
-  ###*
-  # @method unmapkey
-  # @param {String} code keyCode that will be unmaped
-  ###
-  unmapKey: (code)-&gt;
-    if @mapKeys[code]?
-      delete @mapKeys[code]
-  ###*
-  # @method trigger
-  # @param {Object} event
-  # @example 
-  # controller.event({ keyCode: &#x27;32&#x27; })
-  ###
-  trigger: (event)-&gt;
-    switch @type
-      when &#x27;keyboard&#x27;
-        if @mapKeys[event.keyCode]?
-          if typeof @mapKeys[event.keyCode] == &#x27;function&#x27;
-            @mapKeys[event.keyCode]()
-          else
-            eval(@mapKeys[event.keyCode])
-        else
-          @logger.log(event.keyCode)
-      when &#x27;custom&#x27;
-        if @mapKeys[event.keyCode]?
-          if typeof @mapKeys[event.keyCode] == &#x27;function&#x27;
-            @mapKeys[event.keyCode]()
-          else
-            eval(@mapKeys[event.keyCode])
-        else
-          @logger.log(event.keyCode)
-      else
-        @logger.log(&#x27;Controller type:&#x27;+@type+&#x27; not implemented&#x27;)
-root.FEP ?= {}
-root.FEP.FController = FController
-    </pre>
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/src_FInit.coffee.html#l2"><code>FInit:2</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/FEP.html">FEP</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    
+</div>
+
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

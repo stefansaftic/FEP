@@ -36,6 +36,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\FInit.coffee": {
+            "name": "src\\FInit.coffee",
+            "modules": {},
+            "classes": {
+                "FInit": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\FLog.coffee": {
             "name": "src\\FLog.coffee",
             "modules": {},
@@ -63,6 +72,7 @@
                 "ATOB": 1,
                 "FController": 1,
                 "FGame": 1,
+                "FInit": 1,
                 "FLog": 1,
                 "SNAKE": 1
             },
@@ -129,6 +139,19 @@
             "module": "FEP",
             "namespace": "",
             "file": "src\\FGame.coffee",
+            "line": 2
+        },
+        "FInit": {
+            "name": "FInit",
+            "shortname": "FInit",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "namespace": "",
+            "file": "src\\FInit.coffee",
             "line": 2
         },
         "FLog": {
@@ -293,8 +316,8 @@
                 },
                 {
                     "name": "callback",
-                    "description": "function that will be triggered",
-                    "type": "Function"
+                    "description": "function or string that will be executed on trigger",
+                    "type": "Function|String"
                 }
             ],
             "class": "FController",

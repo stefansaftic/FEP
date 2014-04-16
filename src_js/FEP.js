@@ -1,5 +1,5 @@
 (function() {
-  var ATOB, FController, FGame, FLog, SNAKE, root,
+  var ATOB, FController, FGame, FInit, FLog, SNAKE, root,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -517,6 +517,51 @@
 
   /**
    * @module FEP
+   * @class FInit
+   * @constructor
+   * @param {String} name Name of the game
+   * @param {String} version Version of the game (0.0.x)
+   * @param {Number} debug Is game in debugging mode
+   */
+
+  FInit = (function() {
+    function FInit(game, controller, data) {
+      this.game = game;
+      this.controller = controller;
+      this.data = data;
+      this.frame = 0;
+    }
+
+    FInit.prototype.onReady = function() {
+      this.game.start();
+      return this.loop();
+    };
+
+    FInit.prototype.loop = function() {
+      requestAnimationFrame(this.loop.bind(this));
+      if ((this.data.skip !== 0) && (this.data.skip !== this.frame)) {
+        return this.frame++;
+      } else {
+        this.frame = 0;
+        return this.game.loop();
+      }
+    };
+
+    return FInit;
+
+  })();
+
+  if (root.FEP == null) {
+    root.FEP = {};
+  }
+
+  root.FEP.FInit = FInit;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : window;
+
+
+  /**
+   * @module FEP
    * @class FController
    */
 
@@ -548,7 +593,7 @@
     /**
      * @method mapKey
      * @param {String} code keyCode that will be maped
-     * @param {Function} callback function that will be triggered
+     * @param {Function|String} callback function or string that will be executed on trigger
      */
 
     FController.prototype.mapKey = function(code, callback) {
@@ -579,14 +624,22 @@
       switch (this.type) {
         case 'keyboard':
           if (this.mapKeys[event.keyCode] != null) {
-            return this.mapKeys[event.keyCode]();
+            if (typeof this.mapKeys[event.keyCode] === 'function') {
+              return this.mapKeys[event.keyCode]();
+            } else {
+              return eval(this.mapKeys[event.keyCode]);
+            }
           } else {
             return this.logger.log(event.keyCode);
           }
           break;
         case 'custom':
           if (this.mapKeys[event.keyCode] != null) {
-            return this.mapKeys[event.keyCode]();
+            if (typeof this.mapKeys[event.keyCode] === 'function') {
+              return this.mapKeys[event.keyCode]();
+            } else {
+              return eval(this.mapKeys[event.keyCode]);
+            }
           } else {
             return this.logger.log(event.keyCode);
           }

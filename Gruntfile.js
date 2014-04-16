@@ -89,15 +89,21 @@ module.exports = function(grunt) {
         }
       }
     },
-    clean: ["src_js/*.js", "src_cof/*.coffee","doc/*"],
+    clean: {
+      src:["src_js/*.js"],
+      test:[ "src_cof/*.coffee"]
+    },
     watch: {
       cffile: {
         files: ['src/*.coffee'],
-        tasks: ['clean','coffeelint','shell','coffee','yuidoc']
+        tasks: ['clean:src','coffeelint','shell','coffee','yuidoc'],
+        options:{
+          debounceDelay: 5000
+        }
       },
       cftest:{
-        files: ['src_cof/*.coffee'],
-        tasks: ['mochaTest','uglify']
+        files: ['src_cof/*.coffee','test/*.coffee'],
+        tasks: ['clean:test','mochaTest','uglify']
       
       },
       csfile: {
