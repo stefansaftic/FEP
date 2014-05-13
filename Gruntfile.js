@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     },
     shell: {
         coffeConcat: {
-          command:'coffee ./node_modules/coffeescript-concat/coffeescript-concat.coffee -I ./src/ -o ./src_cof/<%= pkg.name %>.coffee',
+          command:'coffee ./node_modules/coffeescript-concat/coffeescript-concat.coffee -I ./src/ -I ./src/FEJS/ -o ./src_cof/<%= pkg.name %>.coffee',
           options: {
                async: false
           }
@@ -95,14 +95,14 @@ module.exports = function(grunt) {
     },
     watch: {
       cffile: {
-        files: ['src/*.coffee'],
+        files: ['src/*.coffee','src/FEJS/*.coffee'],
         tasks: ['clean:src','coffeelint','shell','coffee','yuidoc'],
         options:{
           debounceDelay: 5000
         }
       },
       cftest:{
-        files: ['src_cof/*.coffee','test/*.coffee'],
+        files: ['src_cof/*.coffee'],
         tasks: ['clean:test','mochaTest','uglify']
       
       },
