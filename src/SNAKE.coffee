@@ -2,6 +2,7 @@ root = exports ? window
 ###*
 # @module FEP
 # @class SNAKE
+# @extends ATOB
 ### 
 class SNAKE extends ATOB
   ###*
@@ -10,7 +11,6 @@ class SNAKE extends ATOB
   ###
   constructor: (@debug=0) ->
     super(@debug)
-    @logger.log('But it is a snake game')
   validP: (t)->
     return t>=0 && t<@data.n
   ###*
@@ -23,17 +23,26 @@ class SNAKE extends ATOB
       return true
     return false
   loop: ()->
-    position = {x:@data.player.x+@data.direction.x,y:@data.player.y+@data.direction.y}
-    if @validP(position.x) && @validP(position.y) && @validateMove(position)
-      @move(position)
-    else
-      @data.direction = {x:0,y:0}
-      @end()
+    if @status == 'started'
+      position = {x:@data.player.x+@data.direction.x,y:@data.player.y+@data.direction.y}
+      if @validP(position.x) && @validP(position.y) && @validateMove(position)
+        @move(position)
+      else
+        @data.direction = {x:0,y:0}
+        @end()
+  end: ()->
+    console.log('GameOver')
+    @status = 'ended'
+    radio('gameOver').broadcast()
   move: (position)->
     @data.tmpdir = @data.direction
-    @logger.log(position)
+    @log(position)
     if @data.ground[position.x][position.y] > 0
       @data.tailAdd += @data.ground[position.x][position.y] * 2
+      window.engine.data.skip -= 1
+      @data.score += 100
+      radio('renderScore').broadcast(@data.score)
+      @generateApple()
     @data.ground[@data.player.x][@data.player.y] = -2
     @data.ground[position.x][position.y] = -1
     @data.tail.push position
@@ -44,6 +53,12 @@ class SNAKE extends ATOB
     else
       @data.tailAdd--
     radio('renderAll').broadcast(@data.ground)
+  generateApple: () ->
+    loop
+      x = Math.round(Math.random()*10) % @data.n
+      y = Math.round(Math.random()*10) % @data.n
+      break if @data.ground[x][y] == 0
+    @data.ground[x][y] = 1
   ###*
   # Moves player down
   # @method moveDown

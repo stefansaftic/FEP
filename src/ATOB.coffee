@@ -2,6 +2,7 @@ root = exports ? window
 ###*
 # @module FEP
 # @class ATOB
+# @extends FGame
 ### 
 class ATOB extends FGame
   ###*
@@ -31,7 +32,7 @@ class ATOB extends FGame
     super()
     radio('render').broadcast(@data.ground)
     radio('renderPlayer').broadcast(@data.player)
-    @logger.log("Game ATOB started")
+    @log("Game ATOB started")
     radio('moveUp').subscribe([@moveUp,@])
     radio('moveDown').subscribe([@moveDown,@])
     radio('moveLeft').subscribe([@moveLeft,@])
@@ -110,7 +111,6 @@ class ATOB extends FGame
       position = {x:@data.player.x,y:@data.player.y}
       position.y++
       if @validateMove(position)
-        @logger.log("Moved right")
         @checkFinish(position)
         @data.player = position
         radio('renderMoveRight').broadcast(true)

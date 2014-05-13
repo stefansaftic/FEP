@@ -7,6 +7,33 @@
         "logo": "assets/docs-icon-FEP.png"
     },
     "files": {
+        "src\\FEJS\\FEGroup.coffee": {
+            "name": "src\\FEJS\\FEGroup.coffee",
+            "modules": {},
+            "classes": {
+                "FEGroup": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\FEJS\\FEImage.coffee": {
+            "name": "src\\FEJS\\FEImage.coffee",
+            "modules": {},
+            "classes": {
+                "FEImage": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\FEJS\\FEJS.coffee": {
+            "name": "src\\FEJS\\FEJS.coffee",
+            "modules": {},
+            "classes": {
+                "FEJS": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\ATOB.coffee": {
             "name": "src\\ATOB.coffee",
             "modules": {
@@ -54,6 +81,24 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\FPreload.coffee": {
+            "name": "src\\FPreload.coffee",
+            "modules": {},
+            "classes": {
+                "FPreload": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\FVisual.coffee": {
+            "name": "src\\FVisual.coffee",
+            "modules": {},
+            "classes": {
+                "FVisual": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\SNAKE.coffee": {
             "name": "src\\SNAKE.coffee",
             "modules": {},
@@ -69,11 +114,16 @@
             "name": "FEP",
             "submodules": {},
             "classes": {
+                "FEGroup": 1,
+                "FEImage": 1,
+                "FEJS": 1,
                 "ATOB": 1,
                 "FController": 1,
                 "FGame": 1,
                 "FInit": 1,
                 "FLog": 1,
+                "FPreload": 1,
+                "FVisual": 1,
                 "SNAKE": 1
             },
             "fors": {},
@@ -81,6 +131,7 @@
             "tag": "module",
             "file": "src\\SNAKE.coffee",
             "line": 2,
+            "extends": "FGame",
             "is_constructor": 1,
             "params": [
                 {
@@ -102,6 +153,51 @@
         }
     },
     "classes": {
+        "FEGroup": {
+            "name": "FEGroup",
+            "shortname": "FEGroup",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "file": "src\\FEJS\\FEGroup.coffee",
+            "line": 2,
+            "description": "This is Fora EaselJS Group Class",
+            "extends": "FEJS",
+            "is_constructor": 1
+        },
+        "FEImage": {
+            "name": "FEImage",
+            "shortname": "FEImage",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "file": "src\\FEJS\\FEImage.coffee",
+            "line": 2,
+            "description": "This is Fora EaselJS Image Class",
+            "extends": "FEJS",
+            "is_constructor": 1
+        },
+        "FEJS": {
+            "name": "FEJS",
+            "shortname": "FEJS",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "file": "src\\FEJS\\FEJS.coffee",
+            "line": 2,
+            "description": "This is Fora EaselJS Class",
+            "extends": "FVisual",
+            "is_constructor": 1
+        },
         "ATOB": {
             "name": "ATOB",
             "shortname": "ATOB",
@@ -167,6 +263,34 @@
             "file": "src\\FLog.coffee",
             "line": 2
         },
+        "FPreload": {
+            "name": "FPreload",
+            "shortname": "FPreload",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "namespace": "",
+            "file": "src\\FPreload.coffee",
+            "line": 2,
+            "description": "Preloads files using createjs PreloadJS"
+        },
+        "FVisual": {
+            "name": "FVisual",
+            "shortname": "FVisual",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "FEP",
+            "namespace": "",
+            "file": "src\\FVisual.coffee",
+            "line": 2,
+            "description": "Abstract class that should be used for EaselJS, ThreeJS or other framework DisplayObject"
+        },
         "SNAKE": {
             "name": "SNAKE",
             "shortname": "SNAKE",
@@ -183,8 +307,100 @@
     },
     "classitems": [
         {
+            "file": "src\\FEJS\\FEJS.coffee",
+            "line": 12,
+            "description": "It add Object to Stage at next postion if indexAt is not provided",
+            "itemtype": "method",
+            "name": "showOnStage",
+            "params": [
+                {
+                    "name": "stage",
+                    "description": "- CreateJS stage object",
+                    "type": "Stage"
+                },
+                {
+                    "name": "indexAt",
+                    "description": "- position for stage child",
+                    "type": "Integer",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "error message in console and false if there is some error else it returns true which means it success.",
+                "type": "Boolean"
+            },
+            "class": "FEJS"
+        },
+        {
+            "file": "src\\FEJS\\FEJS.coffee",
+            "line": 31,
+            "description": "It add 1st Object to Stage before 2nd Object",
+            "itemtype": "method",
+            "name": "showOnStageBefore",
+            "params": [
+                {
+                    "name": "object",
+                    "description": "- Referent object",
+                    "type": "FEJS"
+                },
+                {
+                    "name": "stage",
+                    "description": "- CreateJS stage object",
+                    "type": "Stage"
+                }
+            ],
+            "return": {
+                "description": "error message in console and false if there is some error else it returns true which means it success.",
+                "type": "Boolean"
+            },
+            "class": "FEJS"
+        },
+        {
+            "file": "src\\FEJS\\FEJS.coffee",
+            "line": 42,
+            "description": "It add 1st Object to Stage after 2nd Object",
+            "itemtype": "method",
+            "name": "showOnStageAfter",
+            "params": [
+                {
+                    "name": "object",
+                    "description": "- Referent object",
+                    "type": "FEJS"
+                },
+                {
+                    "name": "stage",
+                    "description": "- CreateJS stage object",
+                    "type": "Stage"
+                }
+            ],
+            "return": {
+                "description": "error message in console and false if there is some error else it returns true which means it success.",
+                "type": "Boolean"
+            },
+            "class": "FEJS"
+        },
+        {
+            "file": "src\\FEJS\\FEJS.coffee",
+            "line": 53,
+            "description": "It removes Object from Stage",
+            "itemtype": "method",
+            "name": "removeObjectFromStage",
+            "params": [
+                {
+                    "name": "stage",
+                    "description": "- CreateJS stage object",
+                    "type": "Stage"
+                }
+            ],
+            "return": {
+                "description": "error message in console and false if there is some error else it returns true which means it success.",
+                "type": "Boolean"
+            },
+            "class": "FEJS"
+        },
+        {
             "file": "src\\ATOB.coffee",
-            "line": 7,
+            "line": 8,
             "itemtype": "method",
             "name": "constructor",
             "params": [
@@ -199,7 +415,7 @@
         },
         {
             "file": "src\\ATOB.coffee",
-            "line": 13,
+            "line": 14,
             "itemtype": "method",
             "name": "initData",
             "class": "ATOB",
@@ -207,7 +423,7 @@
         },
         {
             "file": "src\\ATOB.coffee",
-            "line": 27,
+            "line": 28,
             "itemtype": "method",
             "name": "start",
             "class": "ATOB",
@@ -215,7 +431,7 @@
         },
         {
             "file": "src\\ATOB.coffee",
-            "line": 39,
+            "line": 40,
             "itemtype": "method",
             "name": "validateMove",
             "params": [
@@ -234,7 +450,7 @@
         },
         {
             "file": "src\\ATOB.coffee",
-            "line": 48,
+            "line": 49,
             "itemtype": "method",
             "name": "checkFinish",
             "params": [
@@ -249,7 +465,7 @@
         },
         {
             "file": "src\\ATOB.coffee",
-            "line": 55,
+            "line": 56,
             "description": "Moves player down",
             "itemtype": "method",
             "name": "moveDown",
@@ -258,7 +474,7 @@
         },
         {
             "file": "src\\ATOB.coffee",
-            "line": 71,
+            "line": 72,
             "description": "Moves player up",
             "itemtype": "method",
             "name": "moveUp",
@@ -267,7 +483,7 @@
         },
         {
             "file": "src\\ATOB.coffee",
-            "line": 87,
+            "line": 88,
             "description": "Moves player Left",
             "itemtype": "method",
             "name": "moveLeft",
@@ -276,7 +492,7 @@
         },
         {
             "file": "src\\ATOB.coffee",
-            "line": 103,
+            "line": 104,
             "description": "Moves player right",
             "itemtype": "method",
             "name": "moveRight",
@@ -305,7 +521,23 @@
         },
         {
             "file": "src\\FController.coffee",
-            "line": 22,
+            "line": 21,
+            "description": "Log msg",
+            "itemtype": "method",
+            "name": "log",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "Anything to log",
+                    "type": "String|Integer|Object"
+                }
+            ],
+            "class": "FController",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FController.coffee",
+            "line": 29,
             "itemtype": "method",
             "name": "mapKey",
             "params": [
@@ -325,7 +557,7 @@
         },
         {
             "file": "src\\FController.coffee",
-            "line": 29,
+            "line": 36,
             "itemtype": "method",
             "name": "unmapkey",
             "params": [
@@ -340,7 +572,7 @@
         },
         {
             "file": "src\\FController.coffee",
-            "line": 36,
+            "line": 43,
             "itemtype": "method",
             "name": "trigger",
             "params": [
@@ -368,15 +600,22 @@
         {
             "file": "src\\FGame.coffee",
             "line": 18,
-            "itemtype": "property",
-            "name": "logger",
-            "type": "FLog",
+            "description": "Log msg",
+            "itemtype": "method",
+            "name": "log",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "Anything to log",
+                    "type": "String|Integer|Object"
+                }
+            ],
             "class": "FGame",
             "module": "FEP"
         },
         {
             "file": "src\\FGame.coffee",
-            "line": 23,
+            "line": 26,
             "description": "Start the game",
             "itemtype": "method",
             "name": "start",
@@ -388,7 +627,7 @@
         },
         {
             "file": "src\\FGame.coffee",
-            "line": 31,
+            "line": 34,
             "description": "Ends the game",
             "itemtype": "method",
             "name": "end",
@@ -400,7 +639,7 @@
         },
         {
             "file": "src\\FGame.coffee",
-            "line": 39,
+            "line": 42,
             "description": "Pause the game",
             "itemtype": "method",
             "name": "pause",
@@ -409,7 +648,7 @@
         },
         {
             "file": "src\\FGame.coffee",
-            "line": 51,
+            "line": 54,
             "description": "Init all data for game, override this method when you extend this class",
             "itemtype": "method",
             "name": "initData",
@@ -443,7 +682,23 @@
         },
         {
             "file": "src\\FInit.coffee",
-            "line": 15,
+            "line": 18,
+            "description": "Log msg",
+            "itemtype": "method",
+            "name": "log",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "Anything to log",
+                    "type": "String|Integer|Object"
+                }
+            ],
+            "class": "FInit",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FInit.coffee",
+            "line": 26,
             "description": "Should be triggered on document ready",
             "itemtype": "method",
             "name": "onReady",
@@ -452,7 +707,7 @@
         },
         {
             "file": "src\\FInit.coffee",
-            "line": 22,
+            "line": 34,
             "description": "Loops game on each requestAnimationFrame",
             "itemtype": "method",
             "name": "loop",
@@ -475,8 +730,149 @@
             "module": "FEP"
         },
         {
+            "file": "src\\FVisual.coffee",
+            "line": 8,
+            "itemtype": "method",
+            "name": "constructor",
+            "params": [
+                {
+                    "name": "game",
+                    "description": "Game that needs to be initialized",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Data of visual",
+                    "type": "Object"
+                }
+            ],
+            "class": "FVisual",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FVisual.coffee",
+            "line": 20,
+            "description": "Clone FVisual object",
+            "itemtype": "method",
+            "name": "clone",
+            "class": "FVisual",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FVisual.coffee",
+            "line": 27,
+            "description": "Log msg",
+            "itemtype": "method",
+            "name": "log",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "Anything to log",
+                    "type": "String|Integer|Object"
+                }
+            ],
+            "class": "FVisual",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FVisual.coffee",
+            "line": 35,
+            "description": "Generates GUID private method",
+            "itemtype": "method",
+            "name": "_guid",
+            "return": {
+                "description": "GUID",
+                "type": "String"
+            },
+            "class": "FVisual",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FVisual.coffee",
+            "line": 42,
+            "description": "Creates graphical object",
+            "itemtype": "method",
+            "name": "create",
+            "class": "FVisual",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FVisual.coffee",
+            "line": 49,
+            "description": "Adds object to stage",
+            "itemtype": "method",
+            "name": "showOnStage",
+            "params": [
+                {
+                    "name": "stage",
+                    "description": "Stage where object will be added",
+                    "type": "Object"
+                }
+            ],
+            "class": "FVisual",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FVisual.coffee",
+            "line": 56,
+            "description": "Adds object to stage in back of object",
+            "itemtype": "method",
+            "name": "showOnStageBefore",
+            "params": [
+                {
+                    "name": "stage",
+                    "description": "Stage where object will be added",
+                    "type": "Object"
+                },
+                {
+                    "name": "object",
+                    "description": "relative object on Stage",
+                    "type": "Object"
+                }
+            ],
+            "class": "FVisual",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FVisual.coffee",
+            "line": 64,
+            "description": "Adds object to stage in front of object",
+            "itemtype": "method",
+            "name": "showOnStageAfter",
+            "params": [
+                {
+                    "name": "stage",
+                    "description": "Stage where object will be added",
+                    "type": "Object"
+                },
+                {
+                    "name": "object",
+                    "description": "relative object on Stage",
+                    "type": "Object"
+                }
+            ],
+            "class": "FVisual",
+            "module": "FEP"
+        },
+        {
+            "file": "src\\FVisual.coffee",
+            "line": 72,
+            "description": "Removes object from stage",
+            "itemtype": "method",
+            "name": "showOnStage",
+            "params": [
+                {
+                    "name": "stage",
+                    "description": "Stage where object will be added",
+                    "type": "Object"
+                }
+            ],
+            "class": "FVisual",
+            "module": "FEP"
+        },
+        {
             "file": "src\\SNAKE.coffee",
-            "line": 7,
+            "line": 8,
             "itemtype": "method",
             "name": "constructor",
             "params": [
@@ -510,7 +906,7 @@
         },
         {
             "file": "src\\SNAKE.coffee",
-            "line": 47,
+            "line": 62,
             "description": "Moves player down",
             "itemtype": "method",
             "name": "moveDown",
@@ -519,7 +915,7 @@
         },
         {
             "file": "src\\SNAKE.coffee",
-            "line": 54,
+            "line": 69,
             "description": "Moves player up",
             "itemtype": "method",
             "name": "moveUp",
@@ -528,7 +924,7 @@
         },
         {
             "file": "src\\SNAKE.coffee",
-            "line": 61,
+            "line": 76,
             "description": "Moves player Left",
             "itemtype": "method",
             "name": "moveLeft",
@@ -537,7 +933,7 @@
         },
         {
             "file": "src\\SNAKE.coffee",
-            "line": 68,
+            "line": 83,
             "description": "Moves player right",
             "itemtype": "method",
             "name": "moveRight",
@@ -546,7 +942,7 @@
         },
         {
             "file": "src\\SNAKE.coffee",
-            "line": 75,
+            "line": 90,
             "itemtype": "method",
             "name": "initData",
             "class": "SNAKE",

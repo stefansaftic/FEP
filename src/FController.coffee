@@ -10,15 +10,22 @@ class FController
   # @param {Number} debug Is game in debugging mode
   ###
   constructor: (@type, @debug)->
-    @logger = new FLog(@debug)
     @mapKeys = {}
     switch @type
       when 'keyboard'
         document.addEventListener("keydown",@trigger.bind(@))
       when 'custom'
-        @logger.log('Custom controller')
+        @log('Custom controller')
       else
-        @logger.log('Controller type:'+@type+' not implemented')
+        @log('Controller type:'+@type+' not implemented')
+  ###*
+  # Log msg
+  # @method log
+  # @param {String|Integer|Object} msg Anything to log
+  ###
+  log: (msg) ->
+    if @debug
+      root.FEP.Log.log msg
   ###*
   # @method mapKey
   # @param {String} code keyCode that will be maped
@@ -48,7 +55,7 @@ class FController
           else
             eval(@mapKeys[event.keyCode])
         else
-          @logger.log(event.keyCode)
+          @log(event.keyCode)
       when 'custom'
         if @mapKeys[event.keyCode]?
           if typeof @mapKeys[event.keyCode] == 'function'
@@ -56,8 +63,8 @@ class FController
           else
             eval(@mapKeys[event.keyCode])
         else
-          @logger.log(event.keyCode)
+          @log(event.keyCode)
       else
-        @logger.log('Controller type:'+@type+' not implemented')
+        @log('Controller type:'+@type+' not implemented')
 root.FEP ?= {}
 root.FEP.FController = FController

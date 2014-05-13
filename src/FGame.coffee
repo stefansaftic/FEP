@@ -15,11 +15,14 @@ class FGame
     ###
     @status = 'created'
     @initData()
-    ###*
-    # @property logger
-    # @type FLog
-    ###
-    @logger = new FLog(@debug)
+  ###*
+  # Log msg
+  # @method log
+  # @param {String|Integer|Object} msg Anything to log
+  ###
+  log: (msg) ->
+    if @debug
+      root.FEP.Log.log msg
   ###*
   # Start the game
   # @method start
@@ -47,7 +50,7 @@ class FGame
       if @status is 'paused'
         @status = 'started'
       else
-        @logger.log('Paused while game status is: '+@status)
+        @log('Paused while game status is: '+@status)
   ###*
   # Init all data for game, override this method when you extend this class
   # @method initData

@@ -44,11 +44,21 @@
             
                 <li><a href="../classes/FController.html">FController</a></li>
             
+                <li><a href="../classes/FEGroup.html">FEGroup</a></li>
+            
+                <li><a href="../classes/FEImage.html">FEImage</a></li>
+            
+                <li><a href="../classes/FEJS.html">FEJS</a></li>
+            
                 <li><a href="../classes/FGame.html">FGame</a></li>
             
                 <li><a href="../classes/FInit.html">FInit</a></li>
             
                 <li><a href="../classes/FLog.html">FLog</a></li>
+            
+                <li><a href="../classes/FPreload.html">FPreload</a></li>
+            
+                <li><a href="../classes/FVisual.html">FVisual</a></li>
             
                 <li><a href="../classes/SNAKE.html">SNAKE</a></li>
             
@@ -102,6 +112,7 @@ root = exports ? window
 ###*
 # @module FEP
 # @class SNAKE
+# @extends ATOB
 ### 
 class SNAKE extends ATOB
   ###*
@@ -110,7 +121,6 @@ class SNAKE extends ATOB
   ###
   constructor: (@debug=0) -&gt;
     super(@debug)
-    @logger.log(&#x27;But it is a snake game&#x27;)
   validP: (t)-&gt;
     return t&gt;=0 &amp;&amp; t&lt;@data.n
   ###*
@@ -123,17 +133,26 @@ class SNAKE extends ATOB
       return true
     return false
   loop: ()-&gt;
-    position = {x:@data.player.x+@data.direction.x,y:@data.player.y+@data.direction.y}
-    if @validP(position.x) &amp;&amp; @validP(position.y) &amp;&amp; @validateMove(position)
-      @move(position)
-    else
-      @data.direction = {x:0,y:0}
-      @end()
+    if @status == &#x27;started&#x27;
+      position = {x:@data.player.x+@data.direction.x,y:@data.player.y+@data.direction.y}
+      if @validP(position.x) &amp;&amp; @validP(position.y) &amp;&amp; @validateMove(position)
+        @move(position)
+      else
+        @data.direction = {x:0,y:0}
+        @end()
+  end: ()-&gt;
+    console.log(&#x27;GameOver&#x27;)
+    @status = &#x27;ended&#x27;
+    radio(&#x27;gameOver&#x27;).broadcast()
   move: (position)-&gt;
     @data.tmpdir = @data.direction
-    @logger.log(position)
+    @log(position)
     if @data.ground[position.x][position.y] &gt; 0
       @data.tailAdd += @data.ground[position.x][position.y] * 2
+      window.engine.data.skip -= 1
+      @data.score += 100
+      radio(&#x27;renderScore&#x27;).broadcast(@data.score)
+      @generateApple()
     @data.ground[@data.player.x][@data.player.y] = -2
     @data.ground[position.x][position.y] = -1
     @data.tail.push position
@@ -144,6 +163,12 @@ class SNAKE extends ATOB
     else
       @data.tailAdd--
     radio(&#x27;renderAll&#x27;).broadcast(@data.ground)
+  generateApple: () -&gt;
+    loop
+      x = Math.round(Math.random()*10) % @data.n
+      y = Math.round(Math.random()*10) % @data.n
+      break if @data.ground[x][y] == 0
+    @data.ground[x][y] = 1
   ###*
   # Moves player down
   # @method moveDown

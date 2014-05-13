@@ -12,11 +12,23 @@ class FInit
   ###
   constructor: (@game,@controller,@data) ->
     @frame = 0
+    @initGraphics = ()->
+      @
+    root.FEP.Log = new FEP.FLog(@data.debug)
+  ###*
+  # Log msg
+  # @method log
+  # @param {String|Integer|Object} msg Anything to log
+  ###
+  log: (msg) ->
+    if @data.debug
+      root.FEP.Log.log msg
   ###*
   # Should be triggered on document ready
   # @method onReady
   ###
   onReady: ()->
+    @initGraphics()
     @game.start()
     @loop()
   ###*

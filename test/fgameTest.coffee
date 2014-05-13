@@ -5,6 +5,7 @@ expect = chai.expect
 chai.should()
 Promise = require('es6-promise').Promise
 {FEP} = require '../src_js/FEP.js'
+FEP.Log = new FEP.FLog(1)
 radio = require 'radio'
 
 describe 'FGame', ->
@@ -17,9 +18,6 @@ describe 'FGame', ->
   it 'should set version', ->
     game = new FEP.FGame 'testName', '0.0.1'
     game.version.should.equal '0.0.1'
-  it 'should init logger', ->
-    game = new FEP.FGame 'testName', '0.0.1'
-    expect(game.logger).to.be.ok
   it 'should init status', ->
     game = new FEP.FGame 'testName', '0.0.1'
     expect(game.status).to.be.ok

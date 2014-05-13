@@ -3,9 +3,14 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "ATOB",
         "FController",
+        "FEGroup",
+        "FEImage",
+        "FEJS",
         "FGame",
         "FInit",
         "FLog",
+        "FPreload",
+        "FVisual",
         "SNAKE"
     ],
     "modules": [

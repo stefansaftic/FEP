@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico">
     <script src="../assets/js/yui-source.js"></script>
-	<title>FEP v API Documentation : src\FLog.coffee</title>
+	<title>FEP v API Documentation : src\FEJS\FEImage.coffee</title>
 </head>
 <body class="yui3-skin-sam">
 
@@ -102,29 +102,28 @@
                 <div id="docs-main">
                     <div class="content">
                         <script>
-	var name = src\FLog.coffee      
+	var name = src\FEJS\FEImage.coffee      
 </script>
-<h1 class="file-heading">File:src\FLog.coffee</h1>
+<h1 class="file-heading">File:src\FEJS\FEImage.coffee</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 root = exports ? window
 ###*
-# @module FEP
-# @class FLog
-### 
-class FLog
-  constructor: (@debug)-&gt;
-  ###*
-  # @method log
-  # @param data {Object | Integer | String | Array}
-  ###
-  log: (data)-&gt;
-    if @debug isnt 0
-      if console? then console.log data
-      else if alert? then alert data
+# This is Fora EaselJS Image Class
+# 
+# @class FEImage
+# @extends FEJS
+# @constructor
+###
+class FEImage extends FEJS
+  constructor: (@name,@data) -&gt;
+    super(@name,@data)
+  create: () -&gt;
+    @graphic = new root.createjs.Bitmap(@data.imageUrl)  
+    @created = true;
 root.FEP ?= {}
-root.FEP.FLog = FLog
+root.FEP.FEImage = FEImage
     </pre>
 </div>
 

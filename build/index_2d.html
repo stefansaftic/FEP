@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>ATOB</title>
+	<title>SNAKE</title>
 	<script src="js/radio.min.js"></script>
 	<script src="js/easeljs.min.js"></script>
 	<script src="js/FEP.min.js"></script>
@@ -31,7 +31,19 @@
 			}
 		}
 	}
+	window.gameOver= function(){
+		engine.controller.unmapKey(38);
+		engine.controller.unmapKey(40);
+		engine.controller.unmapKey(39);
+		engine.controller.unmapKey(37);
+		alert('Game Over');
+	}
+	function renderScore(data){
+		$('#score').text('Score: '+data);
+	}
+	radio('renderScore').subscribe(renderScore);
 	radio('render').subscribe(renderT);
+	radio('gameOver').subscribe(gameOver);
 	radio('renderAll').subscribe(renderAll);
 	window.engine = new FEP.FInit(new FEP.SNAKE(1),new FEP.FController('keyboard',1),{skip:30});
 	engine.controller.mapKey(38,'radio(\'moveUp\').broadcast()');
@@ -44,5 +56,6 @@
 </head>
 <body onload="engine.onReady();">
 <div id="game"></div>
+<span id="score"></span>
 </body>
 </html>

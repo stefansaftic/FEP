@@ -44,11 +44,21 @@
             
                 <li><a href="../classes/FController.html">FController</a></li>
             
+                <li><a href="../classes/FEGroup.html">FEGroup</a></li>
+            
+                <li><a href="../classes/FEImage.html">FEImage</a></li>
+            
+                <li><a href="../classes/FEJS.html">FEJS</a></li>
+            
                 <li><a href="../classes/FGame.html">FGame</a></li>
             
                 <li><a href="../classes/FInit.html">FInit</a></li>
             
                 <li><a href="../classes/FLog.html">FLog</a></li>
+            
+                <li><a href="../classes/FPreload.html">FPreload</a></li>
+            
+                <li><a href="../classes/FVisual.html">FVisual</a></li>
             
                 <li><a href="../classes/SNAKE.html">SNAKE</a></li>
             
@@ -110,15 +120,22 @@ class FController
   # @param {Number} debug Is game in debugging mode
   ###
   constructor: (@type, @debug)-&gt;
-    @logger = new FLog(@debug)
     @mapKeys = {}
     switch @type
       when &#x27;keyboard&#x27;
         document.addEventListener(&quot;keydown&quot;,@trigger.bind(@))
       when &#x27;custom&#x27;
-        @logger.log(&#x27;Custom controller&#x27;)
+        @log(&#x27;Custom controller&#x27;)
       else
-        @logger.log(&#x27;Controller type:&#x27;+@type+&#x27; not implemented&#x27;)
+        @log(&#x27;Controller type:&#x27;+@type+&#x27; not implemented&#x27;)
+  ###*
+  # Log msg
+  # @method log
+  # @param {String|Integer|Object} msg Anything to log
+  ###
+  log: (msg) -&gt;
+    if @debug
+      root.FEP.Log.log msg
   ###*
   # @method mapKey
   # @param {String} code keyCode that will be maped
@@ -148,7 +165,7 @@ class FController
           else
             eval(@mapKeys[event.keyCode])
         else
-          @logger.log(event.keyCode)
+          @log(event.keyCode)
       when &#x27;custom&#x27;
         if @mapKeys[event.keyCode]?
           if typeof @mapKeys[event.keyCode] == &#x27;function&#x27;
@@ -156,9 +173,9 @@ class FController
           else
             eval(@mapKeys[event.keyCode])
         else
-          @logger.log(event.keyCode)
+          @log(event.keyCode)
       else
-        @logger.log(&#x27;Controller type:&#x27;+@type+&#x27; not implemented&#x27;)
+        @log(&#x27;Controller type:&#x27;+@type+&#x27; not implemented&#x27;)
 root.FEP ?= {}
 root.FEP.FController = FController
     </pre>

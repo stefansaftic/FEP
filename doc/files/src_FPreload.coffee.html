@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico">
     <script src="../assets/js/yui-source.js"></script>
-	<title>FEP v API Documentation : src\FLog.coffee</title>
+	<title>FEP v API Documentation : src\FPreload.coffee</title>
 </head>
 <body class="yui3-skin-sam">
 
@@ -102,29 +102,27 @@
                 <div id="docs-main">
                     <div class="content">
                         <script>
-	var name = src\FLog.coffee      
+	var name = src\FPreload.coffee      
 </script>
-<h1 class="file-heading">File:src\FLog.coffee</h1>
+<h1 class="file-heading">File:src\FPreload.coffee</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 root = exports ? window
 ###*
+# Preloads files using createjs PreloadJS
 # @module FEP
-# @class FLog
-### 
-class FLog
-  constructor: (@debug)-&gt;
-  ###*
-  # @method log
-  # @param data {Object | Integer | String | Array}
-  ###
-  log: (data)-&gt;
-    if @debug isnt 0
-      if console? then console.log data
-      else if alert? then alert data
+# @class FPreload
+###
+class FPreload
+  constructor: (filelist, onfileload, oncomplete) -&gt;
+    _preload = new root.createjs.LoadQueue()
+    _preload.on(&#x27;fileload&#x27;, onfileload, this)
+    _preload.on(&#x27;complete&#x27;, oncomplete, this)
+    _preload.loadManifest filelist
+    return
 root.FEP ?= {}
-root.FEP.FLog = FLog
+root.FEP.FPreload = FPreload
     </pre>
 </div>
 

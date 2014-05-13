@@ -44,11 +44,21 @@
             
                 <li><a href="../classes/FController.html">FController</a></li>
             
+                <li><a href="../classes/FEGroup.html">FEGroup</a></li>
+            
+                <li><a href="../classes/FEImage.html">FEImage</a></li>
+            
+                <li><a href="../classes/FEJS.html">FEJS</a></li>
+            
                 <li><a href="../classes/FGame.html">FGame</a></li>
             
                 <li><a href="../classes/FInit.html">FInit</a></li>
             
                 <li><a href="../classes/FLog.html">FLog</a></li>
+            
+                <li><a href="../classes/FPreload.html">FPreload</a></li>
+            
+                <li><a href="../classes/FVisual.html">FVisual</a></li>
             
                 <li><a href="../classes/SNAKE.html">SNAKE</a></li>
             
@@ -115,11 +125,14 @@ class FGame
     ###
     @status = &#x27;created&#x27;
     @initData()
-    ###*
-    # @property logger
-    # @type FLog
-    ###
-    @logger = new FLog(@debug)
+  ###*
+  # Log msg
+  # @method log
+  # @param {String|Integer|Object} msg Anything to log
+  ###
+  log: (msg) -&gt;
+    if @debug
+      root.FEP.Log.log msg
   ###*
   # Start the game
   # @method start
@@ -147,7 +160,7 @@ class FGame
       if @status is &#x27;paused&#x27;
         @status = &#x27;started&#x27;
       else
-        @logger.log(&#x27;Paused while game status is: &#x27;+@status)
+        @log(&#x27;Paused while game status is: &#x27;+@status)
   ###*
   # Init all data for game, override this method when you extend this class
   # @method initData

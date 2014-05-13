@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico">
     <script src="../assets/js/yui-source.js"></script>
-	<title>FEP v API Documentation : FController</title>
+	<title>FEP v API Documentation : FVisual</title>
 </head>
 <body class="yui3-skin-sam">
 
@@ -101,7 +101,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>FController Class</h1>
+                        <h1>FVisual Class</h1>
 <div class="box meta">
     
 
@@ -109,7 +109,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_FController.coffee.html#l2"><code>FController:2</code></a>
+            Defined in: <a href="../files/src_FVisual.coffee.html#l2"><code>FVisual:2</code></a>
         </div>
     
 
@@ -125,7 +125,8 @@
 
 
 <div class="box intro">
-    
+    <p>Abstract class that should be used for EaselJS, ThreeJS or other framework DisplayObject</p>
+
 </div>
 
 
@@ -153,7 +154,28 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
+                                <a href="#method__guid">_guid</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_clone">clone</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_constructor">constructor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_create">create</a>
 
                                 
                                 
@@ -167,21 +189,28 @@
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_mapKey">mapKey</a>
+                                <a href="#method_showOnStage">showOnStage</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_trigger">trigger</a>
+                                <a href="#method_showOnStage">showOnStage</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_unmapkey">unmapkey</a>
+                                <a href="#method_showOnStageAfter">showOnStageAfter</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_showOnStageBefore">showOnStageBefore</a>
 
                                 
                                 
@@ -203,6 +232,134 @@
                 <h2 class="off-left">Methods</h2>
 
                 
+                    <div id="method__guid" class="method item">
+    <h3 class="name"><code>_guid</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_FVisual.coffee.html#l35"><code>_guid:35</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Generates GUID private method</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    <p>GUID</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_clone" class="method item">
+    <h3 class="name"><code>clone</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_FVisual.coffee.html#l20"><code>clone:20</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Clone FVisual object</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_constructor" class="method item">
     <h3 class="name"><code>constructor</code></h3>
 
@@ -212,13 +369,13 @@
             
                 <li class="arg">
                     
-                        <code>type</code>
+                        <code>game</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>debug</code>
+                        <code>data</code>
                     
                 </li>
             
@@ -251,7 +408,7 @@
             
         
         
-        <a href="../files/src_FController.coffee.html#l7"><code>constructor:7</code></a>
+        <a href="../files/src_FVisual.coffee.html#l8"><code>constructor:8</code></a>
         
         </p>
 
@@ -273,14 +430,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">type</code>
+                        <code class="param-name">game</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Type of controller</p>
+                        <p>Game that needs to be initialized</p>
 
                     </div>
 
@@ -289,14 +446,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">debug</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Is game in debugging mode</p>
+                        <p>Data of visual</p>
 
                     </div>
 
@@ -305,6 +462,61 @@
             
             </ul>
         </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_create" class="method item">
+    <h3 class="name"><code>create</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_FVisual.coffee.html#l42"><code>create:42</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Creates graphical object</p>
+
+    </div>
+
     
 
     
@@ -355,7 +567,7 @@
             
         
         
-        <a href="../files/src_FController.coffee.html#l21"><code>log:21</code></a>
+        <a href="../files/src_FVisual.coffee.html#l27"><code>log:27</code></a>
         
         </p>
 
@@ -402,8 +614,8 @@
 </div>
 
                 
-                    <div id="method_mapKey" class="method item">
-    <h3 class="name"><code>mapKey</code></h3>
+                    <div id="method_showOnStage" class="method item">
+    <h3 class="name"><code>showOnStage</code></h3>
 
     
         <div class="args">
@@ -411,13 +623,7 @@
             
                 <li class="arg">
                     
-                        <code>code</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>callback</code>
+                        <code>stage</code>
                     
                 </li>
             
@@ -450,7 +656,7 @@
             
         
         
-        <a href="../files/src_FController.coffee.html#l29"><code>mapKey:29</code></a>
+        <a href="../files/src_FVisual.coffee.html#l49"><code>showOnStage:49</code></a>
         
         </p>
 
@@ -461,7 +667,8 @@
     </div>
 
     <div class="description">
-        
+        <p>Adds object to stage</p>
+
     </div>
 
     
@@ -472,118 +679,15 @@
             
                 <li class="param">
                     
-                        <code class="param-name">code</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>keyCode that will be maped</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>function or string that will be executed on trigger</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_trigger" class="method item">
-    <h3 class="name"><code>trigger</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/src_FController.coffee.html#l43"><code>trigger:43</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
+                        <code class="param-name">stage</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                         
+                        <p>Stage where object will be added</p>
+
                     </div>
 
                     
@@ -596,20 +700,11 @@
     
 
     
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <p>controller.event({ keyCode: &#39;32&#39; })</p>
-
-            </div>
-        </div>
-    
 </div>
 
                 
-                    <div id="method_unmapkey" class="method item">
-    <h3 class="name"><code>unmapkey</code></h3>
+                    <div id="method_showOnStage" class="method item">
+    <h3 class="name"><code>showOnStage</code></h3>
 
     
         <div class="args">
@@ -617,7 +712,7 @@
             
                 <li class="arg">
                     
-                        <code>code</code>
+                        <code>stage</code>
                     
                 </li>
             
@@ -650,7 +745,7 @@
             
         
         
-        <a href="../files/src_FController.coffee.html#l36"><code>unmapkey:36</code></a>
+        <a href="../files/src_FVisual.coffee.html#l72"><code>showOnStage:72</code></a>
         
         </p>
 
@@ -661,7 +756,8 @@
     </div>
 
     <div class="description">
-        
+        <p>Removes object from stage</p>
+
     </div>
 
     
@@ -672,14 +768,236 @@
             
                 <li class="param">
                     
-                        <code class="param-name">code</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">stage</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>keyCode that will be unmaped</p>
+                        <p>Stage where object will be added</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_showOnStageAfter" class="method item">
+    <h3 class="name"><code>showOnStageAfter</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>stage</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>object</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_FVisual.coffee.html#l64"><code>showOnStageAfter:64</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Adds object to stage in front of object</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">stage</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Stage where object will be added</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">object</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>relative object on Stage</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_showOnStageBefore" class="method item">
+    <h3 class="name"><code>showOnStageBefore</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>stage</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>object</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_FVisual.coffee.html#l56"><code>showOnStageBefore:56</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Adds object to stage in back of object</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">stage</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Stage where object will be added</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">object</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>relative object on Stage</p>
 
                     </div>
 

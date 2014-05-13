@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico">
     <script src="../assets/js/yui-source.js"></script>
-	<title>FEP v API Documentation : src\FLog.coffee</title>
+	<title>FEP v API Documentation : src\FVisual.coffee</title>
 </head>
 <body class="yui3-skin-sam">
 
@@ -102,29 +102,92 @@
                 <div id="docs-main">
                     <div class="content">
                         <script>
-	var name = src\FLog.coffee      
+	var name = src\FVisual.coffee      
 </script>
-<h1 class="file-heading">File:src\FLog.coffee</h1>
+<h1 class="file-heading">File:src\FVisual.coffee</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 root = exports ? window
 ###*
+# Abstract class that should be used for EaselJS, ThreeJS or other framework DisplayObject
 # @module FEP
-# @class FLog
-### 
-class FLog
-  constructor: (@debug)-&gt;
+# @class FVisual
+###
+class FVisual
   ###*
-  # @method log
-  # @param data {Object | Integer | String | Array}
+  # @method constructor
+  # @param {String} game Game that needs to be initialized
+  # @param {Object} data Data of visual
   ###
-  log: (data)-&gt;
-    if @debug isnt 0
-      if console? then console.log data
-      else if alert? then alert data
+  constructor: (@name,@data) -&gt;
+    @created = false
+    @onStage = false
+    @events = []
+    @graphic = null
+    @id = @name + @_guid()
+    @create()
+  ###*
+  # Clone FVisual object
+  # @method clone
+  ###
+  clone: () -&gt;
+    tmp = new @(@name,@data)
+    return tmp
+  ###*
+  # Log msg
+  # @method log
+  # @param {String|Integer|Object} msg Anything to log
+  ###
+  log: (msg) -&gt;
+    if @data.debug
+      root.FEP.Log.log msg
+  ###*
+  # Generates GUID private method
+  # @method _guid
+  # @return {String} GUID
+  ###
+  _guid: () -&gt;
+    return &#x27;blah&#x27;
+  ###*
+  # Creates graphical object
+  # @method create
+  ###
+  create: ()-&gt;
+    throw new Error(&#x27;Please override create method wich will store DisplayObject to @graphic&#x27;)
+    @created = true
+  ###*
+  # Adds object to stage
+  # @method showOnStage
+  # @param {Object} stage Stage where object will be added
+  ###
+  showOnStage: (stage)-&gt;
+    throw new Error(&#x27;Please override showOnStage method wich will add @graphic to stage&#x27;)
+  ###*
+  # Adds object to stage in back of object
+  # @method showOnStageBefore
+  # @param {Object} stage Stage where object will be added
+  # @param {Object} object relative object on Stage
+  ###
+  showOnStageBefore: (stage,object)-&gt;
+    throw new Error(&#x27;Please override showOnStageBefore method wich will add @graphic before object to stage&#x27;)
+  ###*
+  # Adds object to stage in front of object
+  # @method showOnStageAfter
+  # @param {Object} stage Stage where object will be added
+  # @param {Object} object relative object on Stage
+  ###
+  showOnStageAfter: (stage,object)-&gt;
+    throw new Error(&#x27;Please override showOnStageAfter method wich will add @graphic after object to stage&#x27;)
+  ###*
+  # Removes object from stage
+  # @method showOnStage
+  # @param {Object} stage Stage where object will be added
+  ###
+  hideFromStage: (stage)-&gt;
+    throw new Error(&#x27;Please override hideFromStage method wich will remove @data.object to stage&#x27;)
 root.FEP ?= {}
-root.FEP.FLog = FLog
+root.FEP.FVisual = FVisual
     </pre>
 </div>
 
