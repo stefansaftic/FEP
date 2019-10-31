@@ -6,7 +6,7 @@
     "logo": "assets/docs-icon-FEP.png",
     "dependencies": {
         "coffee-script": "latest",
-        "coffeescript-concat": "1.0.5",
+        "coffeescript-concat": "1.0.14",
 		"grunt": "latest",
         "grunt-contrib-jshint": "latest",
         "grunt-contrib-uglify": "latest",
