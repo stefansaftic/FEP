@@ -29,7 +29,7 @@
         "es6-promise": "latest",
         "jquerygo": "latest",
         "async": "latest",
-        "lodash": "~0.9.0",
+        "lodash": "~4.17.15",
         "connect": "latest"
     },
     "author": "developer"
